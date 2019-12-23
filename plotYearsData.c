@@ -23,39 +23,39 @@ int main( int argc, char *argv[] ) {
 
     int i;
     for (i=0; i<NSIZE; i++) {
-		date[i] = i+1;
-		nb[i] = 0;
-	}
-	for (i=0; i<NAGE; i++) {
-		age[i] = i;
-		nbAge[i] = 0;
-	}
+        date[i] = i+1;
+        nb[i] = 0;
+    }
+    for (i=0; i<NAGE; i++) {
+        age[i] = i;
+        nbAge[i] = 0;
+    }
 
     deces_t *current = deces;
     date_t *begin = read_date("20030101");
     while (current != NULL) {
-		date_t *dateDeces = read_date(current->dateDeces);
-		date_t *birth = read_date(current->dateNaissance);
-		int day = -1;
-		if (dateDeces != NULL) {
-			day = difference_dates(begin, dateDeces);
-			if (birth != NULL && dateDeces->year == 2003) {
-				int ageold = process_age(birth, dateDeces);
-				if (ageold >= 0 && ageold < NAGE) {
-					nbAge[ageold] = nbAge[ageold] + 1;
-				}
-			}
-		    destroy_date(dateDeces);
-		}
-		if (birth != NULL) {
-			destroy_date(birth);
-		}
-		if(day >= 0 && day < NSIZE) {
-			nb[day] = nb[day] + 1;
-		}
-		current = current->next;
-	}
-	destroy_date(begin);
+        date_t *dateDeces = read_date(current->dateDeces);
+        date_t *birth = read_date(current->dateNaissance);
+        int day = -1;
+        if (dateDeces != NULL) {
+            day = difference_dates(begin, dateDeces);
+            if (birth != NULL && dateDeces->year == 2003) {
+                int ageold = process_age(birth, dateDeces);
+                if (ageold >= 0 && ageold < NAGE) {
+                    nbAge[ageold] = nbAge[ageold] + 1;
+                }
+            }
+            destroy_date(dateDeces);
+        }
+        if (birth != NULL) {
+            destroy_date(birth);
+        }
+        if(day >= 0 && day < NSIZE) {
+            nb[day] = nb[day] + 1;
+        }
+        current = current->next;
+    }
+    destroy_date(begin);
     free_deces(deces);
 
     tr_plot_from_zero("deces_par_jour.svg", NSIZE, date, nb, "Décès en France en 2003", "jour de l'année", "nombre de décès par jour");

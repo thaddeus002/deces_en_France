@@ -7,37 +7,37 @@
 #include "trace.h"
 
 typedef enum {
-	CURVE,
-	HISTOGRAM,
-	CURVE_ZERO,
-	HISTOGRAM_ZERO
+    CURVE,
+    HISTOGRAM,
+    CURVE_ZERO,
+    HISTOGRAM_ZERO
 } tr_type_t;
 
 static int is_from_zero(tr_type_t type) {
-	return type == CURVE_ZERO || type == HISTOGRAM_ZERO;
+    return type == CURVE_ZERO || type == HISTOGRAM_ZERO;
 }
 
 /**
  * \param nb number of data, strictly positive
  */
 static double *get_boundaries(int nb, double data[]) {
-	double *boundaries = malloc(sizeof(double) * 2);
-	boundaries[0] = data[0];
-	boundaries[1] = data[0];
-	int i;
-	for (i=1; i<nb; i++) {
-		if (data[i] < boundaries[0]) {
-			boundaries[0] = data[i];
-		}
-		if (data[i] > boundaries[1]) {
-			boundaries[1] = data[i];
-		}
-	}
+    double *boundaries = malloc(sizeof(double) * 2);
+    boundaries[0] = data[0];
+    boundaries[1] = data[0];
+    int i;
+    for (i=1; i<nb; i++) {
+        if (data[i] < boundaries[0]) {
+            boundaries[0] = data[i];
+        }
+        if (data[i] > boundaries[1]) {
+            boundaries[1] = data[i];
+        }
+    }
 
-	return boundaries;
+    return boundaries;
 }
 
-	
+
 static int tr_plot_with_type(char *filename, int nb, double x[], double y[], char *title, char *xlab, char *ylab, tr_type_t type) {
 
     plsdev("svg");
@@ -53,15 +53,15 @@ static int tr_plot_with_type(char *filename, int nb, double x[], double y[], cha
     double *xb = get_boundaries(nb, x);
     double *yb = get_boundaries(nb, y);
     if (is_from_zero(type)) {
-		yb[0] = 0;
-	}
+        yb[0] = 0;
+    }
     // Create a labelled box to hold the plot.
     //pltimefmt("%b");
     plcol0(15); // black
     plenv(xb[0], xb[1], yb[0], yb[1], 0, 0);
     free(xb);
     free(yb);
-    
+
     pllab(xlab, ylab, title);
 
     // Plot the data that was prepared above.
@@ -74,7 +74,7 @@ static int tr_plot_with_type(char *filename, int nb, double x[], double y[], cha
     case HISTOGRAM:
     case HISTOGRAM_ZERO:
         plbin(nb, x, y, PL_BIN_DEFAULT);
-	}
+    }
 
     // Close PLplot library
     plend();
