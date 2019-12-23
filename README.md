@@ -7,6 +7,8 @@ This project contains a program to plot data from the [french file of deceased p
 This is a command line program for Linux using the library [PlPlot](http://plplot.sourceforge.net/index.php).
 PlPlot must be build with svg support, the graphic output being in this format.
 
+[zlib](https://www.zlib.net) is used to read data in compressed files.
+
 Building the program requires `gcc` and `make`.
 
 ## Making new graphics

@@ -13,7 +13,7 @@ trace.o: trace.c trace.h
 	$(CC) $(CFLAGS) $(CFLAGSPLPLOT) -c $<
 
 plotYearsData: plotYearsData.o trace.o deces.o dates.o
-	$(CC) -o $@ plotYearsData.o trace.o deces.o dates.o -lplplot
+	$(CC) -o $@ plotYearsData.o trace.o deces.o dates.o -lplplot -lz
 
 $(SVG): plotYearsData
 	./plotYearsData

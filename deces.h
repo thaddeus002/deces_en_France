@@ -1,15 +1,15 @@
 /**
  * \file deces.h lecture d'un fichier de données
  */
- 
+
 #ifndef __DECES_H__
 #define __DECES_H__
 
 typedef struct deces_ {
-	char nom[80];
-	char prenoms[80];
-	char dateNaissance[9]; //YYYYMMDD
-	char dateDeces[9]; // YYYYMMDD
+    char nom[80];
+    char prenoms[80];
+    char dateNaissance[9]; //YYYYMMDD
+    char dateDeces[9]; // YYYYMMDD
     struct deces_ *next;
 } deces_t;
 

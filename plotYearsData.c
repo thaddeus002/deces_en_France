@@ -9,9 +9,9 @@
 #include "dates.h"
 #define NSIZE 365
 #define NAGE 120
-#define DATAFILE "data/deces-2003.txt"
+#define DATAFILE "data/deces-2003.txt.gz"
 // Some data from december of a given year are in the datafile of the next year
-#define NEXTDATAFILE "data/deces-2004.txt"
+#define NEXTDATAFILE "data/deces-2004.txt.gz"
 
 
 int main( int argc, char *argv[] ) {
