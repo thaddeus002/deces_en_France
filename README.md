@@ -2,7 +2,7 @@
 
 [English version](README.en.md)
 
-Ce depot contient un programme permettant de tracer des données à partir du [fichier INSEE des personnes décédées](https://www.data.gouv.fr/fr/datasets/fichier-des-personnes-decedees/#_).
+Ce dépot contient un programme permettant de tracer des données à partir du [fichier INSEE des personnes décédées](https://www.data.gouv.fr/fr/datasets/fichier-des-personnes-decedees/#_).
 
 ## Dépendences
 
@@ -19,7 +19,7 @@ Les fichiers de données (à télécharger sur le site data.gouv.fr) doivent êt
 
 Par défaut, les graphiques produits concernent l'année 2003. Pour tracer les données d'une année différente, téléchargez le fichier de cette année dans le répertoire `data` et modifiez les constantes dans le fichier `plotYearsData.c`.
 
-Ensuite, il suffit de taper la commande : 
+Ensuite, il suffit de taper la commande :
 
     $ make
 

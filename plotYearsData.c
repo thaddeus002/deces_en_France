@@ -1,6 +1,6 @@
 /**
  * \file plotYearsData.c
- * Program to plot data of a given year.
+ * \brief Program to plot data of a given year.
  */
 
 #include <stdlib.h>
@@ -12,7 +12,9 @@
 #define DATAFILE "data/deces-2003.txt.gz"
 // Some data from december of a given year are in the datafile of the next year
 #define NEXTDATAFILE "data/deces-2004.txt.gz"
-
+#define FIRSTDAY "20030101"
+#define TITLEN "Décès en France en 2003"
+#define TITLEAGE "Décès en France en 2003 par classe d'age"
 
 int main( int argc, char *argv[] ) {
     double date[NSIZE], nb[NSIZE];
@@ -32,7 +34,7 @@ int main( int argc, char *argv[] ) {
     }
 
     deces_t *current = deces;
-    date_t *begin = read_date("20030101");
+    date_t *begin = read_date(FIRSTDAY);
     while (current != NULL) {
         date_t *dateDeces = read_date(current->dateDeces);
         date_t *birth = read_date(current->dateNaissance);
@@ -58,8 +60,8 @@ int main( int argc, char *argv[] ) {
     destroy_date(begin);
     free_deces(deces);
 
-    tr_plot_from_zero("deces_par_jour.svg", NSIZE, date, nb, "Décès en France en 2003", "jour de l'année", "nombre de décès par jour");
-    tr_histo_from_zero("deces_par_age.svg", NAGE, age, nbAge, "Décès en France en 2003 par classe d'age", "age", "nombre de décès");
+    tr_plot_from_zero("deces_par_jour.svg", NSIZE, date, nb, TITLEN, "jour de l'année", "nombre de décès par jour");
+    tr_histo_from_zero("deces_par_age.svg", NAGE, age, nbAge, TITLEAGE, "age", "nombre de décès");
 
     exit(EXIT_SUCCESS);
 }
