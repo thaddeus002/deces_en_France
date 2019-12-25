@@ -1,29 +1,34 @@
 # Décès en France
 
-This project contains a program to plot data from the [french file of deceased persons](https://www.data.gouv.fr/fr/datasets/fichier-des-personnes-decedees/#_).
+[English version](README.en.md)
 
-## Requirements
+Ce depot contient un programme permettant de tracer des données à partir du [fichier INSEE des personnes décédées](https://www.data.gouv.fr/fr/datasets/fichier-des-personnes-decedees/#_).
 
-This is a command line program for Linux using the library [PlPlot](http://plplot.sourceforge.net/index.php).
-PlPlot must be build with svg support, the graphic output being in this format.
+## Dépendences
 
-[zlib](https://www.zlib.net) is used to read data in compressed files.
+Ce programme en ligne de commande pour Linux utilise la bibliothèque de tracé [PlPlot](http://plplot.sourceforge.net/index.php).
+PlPlot doit être compilée avec le support du svg car les sorties sont dans ce format.
 
-Building the program requires `gcc` and `make`.
+[zlib](https://www.zlib.net) est utilisé pour lire les données dans des fichiers compressés.
 
-## Making new graphics
+La compilation du programme nécessite les outils `gcc` et `make`.
 
-The graphics are for year 2003. For a different dataset, download a year's file in directory `data` and change the constants in file `plotYearsData.c`.
-Then simply type :
+Les fichiers de données (à télécharger sur le site data.gouv.fr) doivent être dans le répertoire `data`.
+
+## Génération des graphiques
+
+Par défaut, les graphiques produits concernent l'année 2003. Pour tracer les données d'une année différente, téléchargez le fichier de cette année dans le répertoire `data` et modifiez les constantes dans le fichier `plotYearsData.c`.
+
+Ensuite, il suffit de taper la commande : 
 
     $ make
 
-## Output
+## Sorties
 
-![number of death by day](deces_par_jour.svg)
+![nombre de décès par jour](deces_par_jour.svg)
 
-![distribution by age](deces_par_age.svg)
+![distribution par age](deces_par_age.svg)
 
-## License
+## Licence
 
-This is free software release under MIT license. Read the file [LICENSE](LICENSE) for more informations.
+Ce programme est un logiciel libre sous licence MIT. Lire le fichier [LICENSE](LICENSE) (en anglais) pour plus d'informations.

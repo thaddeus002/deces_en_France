@@ -7,9 +7,9 @@
 #define DATES_H_ 1
 
 typedef struct date_t_ {
-	int day; /* 1..31 */
-	int month; /* 1..12 */
-	int year; /* ..2003.. */
+    int day; /* 1..31 */
+    int month; /* 1..12 */
+    int year; /* ..2003.. */
 } date_t;
 
 
