@@ -4,24 +4,27 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "trace.h"
 #include "deces.h"
 #include "dates.h"
 #define NSIZE 365
 #define NAGE 120
-#define DATAFILE "data/deces-2003.txt.gz"
-// Some data from december of a given year are in the datafile of the next year
-#define NEXTDATAFILE "data/deces-2004.txt.gz"
-#define FIRSTDAY "20030101"
-#define TITLEN "Décès en France en 2003"
-#define TITLEAGE "Décès en France en 2003 par classe d'age"
+#define THEYEAR 2003
+#define DATAFILEFMT "data/deces-%d.txt.gz"
+#define TITLENFMT "Décès en France en %d"
+#define TITLEAGEFMT "Décès en France en %d par classe d'age"
 
 int main( int argc, char *argv[] ) {
     double date[NSIZE], nb[NSIZE];
     double age[NAGE] , nbAge[NAGE];
 
-    deces_t *deces = read_data_file(DATAFILE);
-    deces = add_data_file(deces, NEXTDATAFILE);
+    char datafilename[23];
+    sprintf(datafilename, DATAFILEFMT, THEYEAR);
+    deces_t *deces = read_data_file(datafilename);
+    // Some data from december of a given year are in the datafile of the next year
+    sprintf(datafilename, DATAFILEFMT, THEYEAR + 1);
+    deces = add_data_file(deces, datafilename);
 
     int i;
     for (i=0; i<NSIZE; i++) {
@@ -34,14 +37,16 @@ int main( int argc, char *argv[] ) {
     }
 
     deces_t *current = deces;
-    date_t *begin = read_date(FIRSTDAY);
+    char firstDay[9];
+    sprintf(firstDay, "%04d0101", THEYEAR);
+    date_t *begin = read_date(firstDay);
     while (current != NULL) {
         date_t *dateDeces = read_date(current->dateDeces);
         date_t *birth = read_date(current->dateNaissance);
         int day = -1;
         if (dateDeces != NULL) {
             day = difference_dates(begin, dateDeces);
-            if (birth != NULL && dateDeces->year == 2003) {
+            if (birth != NULL && dateDeces->year == THEYEAR) {
                 int ageold = process_age(birth, dateDeces);
                 if (ageold >= 0 && ageold < NAGE) {
                     nbAge[ageold] = nbAge[ageold] + 1;
@@ -60,8 +65,11 @@ int main( int argc, char *argv[] ) {
     destroy_date(begin);
     free_deces(deces);
 
-    tr_plot_from_zero("deces_par_jour.svg", NSIZE, date, nb, TITLEN, "jour de l'année", "nombre de décès par jour");
-    tr_histo_from_zero("deces_par_age.svg", NAGE, age, nbAge, TITLEAGE, "age", "nombre de décès");
+    char graphTitle[50];
+    sprintf(graphTitle, TITLENFMT, THEYEAR);
+    tr_plot_from_zero("deces_par_jour.svg", NSIZE, date, nb, graphTitle, "jour de l'année", "nombre de décès par jour");
+    sprintf(graphTitle, TITLEAGEFMT, THEYEAR);
+    tr_histo_from_zero("deces_par_age.svg", NAGE, age, nbAge, graphTitle, "age", "nombre de décès");
 
     exit(EXIT_SUCCESS);
 }

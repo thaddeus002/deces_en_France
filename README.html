@@ -1,0 +1,35 @@
+<h1>Décès en France</h1>
+
+<p><a href="README.en.md">English version</a></p>
+
+<p>Ce depot contient un programme permettant de tracer des données à partir du <a href="https://www.data.gouv.fr/fr/datasets/fichier-des-personnes-decedees/#_">fichier INSEE des personnes décédées</a>.</p>
+
+<h2>Dépendences</h2>
+
+<p>Ce programme en ligne de commande pour Linux utilise la bibliothèque de tracé <a href="http://plplot.sourceforge.net/index.php">PlPlot</a>.
+PlPlot doit être compilée avec le support du svg car les sorties sont dans ce format.</p>
+
+<p><a href="https://www.zlib.net">zlib</a> est utilisé pour lire les données dans des fichiers compressés.</p>
+
+<p>La compilation du programme nécessite les outils <code>gcc</code> et <code>make</code>.</p>
+
+<p>Les fichiers de données (à télécharger sur le site data.gouv.fr) doivent être dans le répertoire <code>data</code>.</p>
+
+<h2>Génération des graphiques</h2>
+
+<p>Par défaut, les graphiques produits concernent l'année 2003. Pour tracer les données d'une année différente, téléchargez le fichier de cette année dans le répertoire <code>data</code> et modifiez les constantes dans le fichier <code>plotYearsData.c</code>.</p>
+
+<p>Ensuite, il suffit de taper la commande : </p>
+
+<pre><code>$ make
+</code></pre>
+
+<h2>Sorties</h2>
+
+<p><img src="deces_par_jour.svg" alt="nombre de décès par jour" title="" /></p>
+
+<p><img src="deces_par_age.svg" alt="distribution par age" title="" /></p>
+
+<h2>Licence</h2>
+
+<p>Ce programme est un logiciel libre sous licence MIT. Lire le fichier <a href="LICENSE">LICENSE</a> (en anglais) pour plus d'informations.</p>

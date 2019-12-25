@@ -15,7 +15,7 @@ The datafile (that are downloadable on data.gouv.fr) must be in directory `data`
 
 ## Making new graphics
 
-The graphics are for year 2003. For a different dataset, download a year's file in directory `data` and change the constants in file `plotYearsData.c`.
+The graphics are for year 2003. For a different dataset, download a year's file in directory `data` and change the constant `THEYEAR` in file `plotYearsData.c`.
 Then simply type :
 
     $ make

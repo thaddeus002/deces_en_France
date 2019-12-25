@@ -17,7 +17,7 @@ Les fichiers de données (à télécharger sur le site data.gouv.fr) doivent êt
 
 ## Génération des graphiques
 
-Par défaut, les graphiques produits concernent l'année 2003. Pour tracer les données d'une année différente, téléchargez le fichier de cette année dans le répertoire `data` et modifiez les constantes dans le fichier `plotYearsData.c`.
+Par défaut, les graphiques produits concernent l'année 2003. Pour tracer les données d'une année différente, téléchargez le fichier de cette année dans le répertoire `data` et modifiez la valeur de la constante `THEYEAR` dans le fichier `plotYearsData.c`.
 
 Ensuite, il suffit de taper la commande :
 
