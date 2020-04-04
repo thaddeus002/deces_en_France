@@ -11,7 +11,7 @@ PlPlot doit être compilée avec le support du svg car les sorties sont dans ce 
 
 [zlib](https://www.zlib.net) est utilisé pour lire les données dans des fichiers compressés.
 
-La compilation du programme nécessite les outils `gcc` et `make`.
+La compilation du programme nécessite les outils `gcc`, `make` et `pkg-config`.
 
 Les fichiers de données (à télécharger sur le site data.gouv.fr) doivent être dans le répertoire `data`.
 
